@@ -52,14 +52,13 @@ namespace Aimbot
                               ydif = eData.yPos - pData.yPos,
                               zdif = eData.zPos - pData.zPos;
 
-                        // Calculate the angle needed to change, convert to degrees, store it into memory
+                        // Calculate the angle needed to change, convert to degrees
                         float yaw =    (float)(Math.Atan2(eData.yPos - pData.yPos, eData.distanceTo(pData)) * 180 / Math.PI);
                         float pitch = -(float)(Math.Atan2(eData.xPos - pData.xPos, eData.zPos - pData.zPos) * 180 / Math.PI + 180);
 
-                        //aimbotCheckbox.Text = (int)pitchX + " : " + (int)yawY;
+                        // Store the calculated values into memory
                         Mem.WriteFloat(MainPlayer.pointerAddress + MainPlayer.offsets[1], pitch);
                         Mem.WriteFloat(MainPlayer.pointerAddress + MainPlayer.offsets[2], yaw);
-                        //Mem.WriteFloat(MainPlayer.pointerAddress + MainPlayer.offsets[2], yawY);
                     }
                 }
 
