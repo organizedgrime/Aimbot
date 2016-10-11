@@ -1,0 +1,9 @@
+c:\users\nico\documents\visual studio 2015\Projects\Aimbot\Aimbot\bin\Debug\Aimbot.exe.config
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\Aimbot\Aimbot\bin\Debug\Aimbot.exe
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\Aimbot\Aimbot\bin\Debug\Aimbot.pdb
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\Aimbot\Aimbot\obj\Debug\Aimbot.csprojResolveAssemblyReference.cache
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\Aimbot\Aimbot\obj\Debug\Aimbot.Aimbot.resources
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\Aimbot\Aimbot\obj\Debug\Aimbot.Properties.Resources.resources
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\Aimbot\Aimbot\obj\Debug\Aimbot.csproj.GenerateResource.Cache
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\Aimbot\Aimbot\obj\Debug\Aimbot.exe
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\Aimbot\Aimbot\obj\Debug\Aimbot.pdb
