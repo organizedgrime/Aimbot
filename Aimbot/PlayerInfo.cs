@@ -3,19 +3,27 @@ using System;
 
 namespace Aimbot
 {
-
-    public class PlayerInfo {
-
+    public class PlayerInfo
+    {
+        // Int for the base address, where the first pointer is found
         public int baseAddress;
+
+        // Int for the final address, where all offsets will applied
         public int pointerAddress;
+
+        // Array of memory offsets for each value in memory
         public int[] baseOffsets;
 
-        // Health, xMouse, yMouse, xPos, yPos, zPos;
+        // Array of memory offsets to the addresses actually containing data
+        // Health, xMouse, yMouse, xPos, yPos, zPos
         public int[] offsets;
 
-        // in-game Data
-        public int Health;
-        public float xMouse, yMouse, xPos, yPos, zPos;
+        // Int for health, because reading in data from a byte array as a float doesn't work here
+        public int health;
+
+        // Float array for in-game Data
+        // xMouse, yMouse, xPos, yPos, zPos
+        public float[] data = new float[5];
 
         public PlayerInfo(int baseAddress, int[] baseOffsets, int[] offsets)
         {
@@ -27,14 +35,14 @@ namespace Aimbot
         // This function reads data from the game
         public void loadData(MemoryManager Mem)
         {
-            Health = Mem.ReadInt(pointerAddress + offsets[0]);
-            xMouse = Mem.ReadFloat(pointerAddress + offsets[1]);
-            yMouse = Mem.ReadFloat(pointerAddress + offsets[2]);
-            xPos =   Mem.ReadFloat(pointerAddress + offsets[3]);
-            yPos =   Mem.ReadFloat(pointerAddress + offsets[4]);
-            zPos =   Mem.ReadFloat(pointerAddress + offsets[5]);
+            health = Mem.ReadInt(pointerAddress + offsets[0]);
+            for(int i = 0; i < data.Length; i++)
+            {
+                data[i] = Mem.ReadFloat(pointerAddress + offsets[i+1]);
+            }
         }
 
+        // This function, knowing the base offsets, will find the actual current memory address in the computer memory
         public void findPointer(MemoryManager Mem)
         {
             pointerAddress = Mem.ReadInt(baseAddress);
@@ -45,12 +53,13 @@ namespace Aimbot
             }
         }
 
+        // This function uses the 3D distance formula to determine distance between two players
         public float distanceTo(PlayerInfo player2)
         {
             return (float)(Math.Sqrt(
-                ((player2.xPos - xPos) * (player2.xPos - xPos)) +
-                ((player2.yPos - yPos) * (player2.yPos - yPos)) +
-                ((player2.zPos - zPos) * (player2.zPos - zPos))
+                ((player2.data[2] - data[2]) * (player2.data[2] - data[2])) +
+                ((player2.data[3] - data[3]) * (player2.data[3] - data[3])) +
+                ((player2.data[4] - data[4]) * (player2.data[4] - data[4]))
             ));
         }
     }
