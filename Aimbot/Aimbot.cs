@@ -22,23 +22,19 @@ namespace Aimbot
         {
             if(processAttached)
             {
-                PlayerData pData, eData;
-
                 // Display MainPlayer information
                 MainPlayer.loadData(Mem);
-                pData = MainPlayer.dataHolder;
-                MainPlayerHLabel.Text = "Health: " + pData.Health;
-                MainPlayerXLabel.Text = "X: " + pData.xPos;
-                MainPlayerYLabel.Text = "Y: " + pData.yPos;
-                MainPlayerZLabel.Text = "Z: " + pData.zPos;
+                MainPlayerHLabel.Text = "Health: " + MainPlayer.Health;
+                MainPlayerXLabel.Text = "X: " + MainPlayer.xPos;
+                MainPlayerYLabel.Text = "Y: " + MainPlayer.yPos;
+                MainPlayerZLabel.Text = "Z: " + MainPlayer.zPos;
 
                 // Display Enemy information
                 Enemy.loadData(Mem);
-                eData = Enemy.dataHolder;
-                EnemyHLabel.Text = "Health: " + eData.Health;
-                EnemyXLabel.Text = "X: " + eData.xPos;
-                EnemyYLabel.Text = "Y: " + eData.yPos;
-                EnemyZLabel.Text = "Z: " + eData.zPos;
+                EnemyHLabel.Text = "Health: " + Enemy.Health;
+                EnemyXLabel.Text = "X: " + Enemy.xPos;
+                EnemyYLabel.Text = "Y: " + Enemy.yPos;
+                EnemyZLabel.Text = "Z: " + Enemy.zPos;
 
                 // Check for each checkbox and mod accordingly
 
@@ -46,15 +42,15 @@ namespace Aimbot
                 if(aimbotCheckbox.Checked)
                 {
                     // Check to make sure both are alive
-                    if (eData.Health > 0 && pData.Health > 0)
+                    if (Enemy.Health > 0 && MainPlayer.Health > 0)
                     {
-                        float xdif = eData.xPos - pData.xPos,
-                              ydif = eData.yPos - pData.yPos,
-                              zdif = eData.zPos - pData.zPos;
+                        float xdif = Enemy.xPos - MainPlayer.xPos,
+                              ydif = Enemy.yPos - MainPlayer.yPos,
+                              zdif = Enemy.zPos - MainPlayer.zPos;
 
                         // Calculate the angle needed to change, convert to degrees
-                        float yaw =    (float)(Math.Atan2(eData.yPos - pData.yPos, eData.distanceTo(pData)) * 180 / Math.PI);
-                        float pitch = -(float)(Math.Atan2(eData.xPos - pData.xPos, eData.zPos - pData.zPos) * 180 / Math.PI + 180);
+                        float yaw =    (float)(Math.Atan2(Enemy.yPos - MainPlayer.yPos, Enemy.distanceTo(MainPlayer)) * 180 / Math.PI);
+                        float pitch = -(float)(Math.Atan2(Enemy.xPos - MainPlayer.xPos, Enemy.zPos - MainPlayer.zPos) * 180 / Math.PI + 180);
 
                         // Store the calculated values into memory
                         Mem.WriteFloat(MainPlayer.pointerAddress + MainPlayer.offsets[1], pitch);
@@ -66,7 +62,7 @@ namespace Aimbot
                 if(healthCheckbox.Checked)
                 {
                     // Make sure that the player is alive when we start
-                    if(pData.Health > 0)
+                    if(MainPlayer.Health > 0)
                     {
                         Mem.WriteInt(MainPlayer.pointerAddress + MainPlayer.offsets[0], 1000);
                     }
