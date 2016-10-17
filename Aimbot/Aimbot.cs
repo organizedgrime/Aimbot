@@ -2,15 +2,19 @@
 using System.Windows.Forms;
 using System.Diagnostics;
 using MemoryManagerLib;
+using System.Text.RegularExpressions;
+
 namespace Aimbot
 {
     public partial class Aimbot : Form
     {
-        Process[] ProcessList;
+        //
+        //Process[] ProcessList;
+        Process selectedProcess;
 
-        PlayerInfo MainPlayer = new PlayerInfo(0x50F4F4, new int[] { }, new int[] { 0xF8, 0x40, 0x44, 0x34, 0x3C, 0x38 });
-        PlayerInfo Enemy;
-        MemoryManager Mem;
+        PlayerInfo mainPlayer = new PlayerInfo(0x50F4F4, new int[] { }, new int[] { 0xF8, 0x40, 0x44, 0x34, 0x3C, 0x38 });
+        PlayerInfo enemy;
+        MemoryManager mem;
 
         public Aimbot()
         {
@@ -19,19 +23,19 @@ namespace Aimbot
 
         private void processTimer_Tick(object sender, EventArgs e)
         {
-            // Display MainPlayer information
-            MainPlayer.loadData(Mem);
-            MainPlayerHLabel.Text = "Health: " + MainPlayer.health;
-            MainPlayerXLabel.Text = "X: " + MainPlayer.data[2];
-            MainPlayerYLabel.Text = "Y: " + MainPlayer.data[3];
-            MainPlayerZLabel.Text = "Z: " + MainPlayer.data[4];
+            // Display mainPlayer information
+            mainPlayer.loadData(mem);
+            mainPlayerHLabel.Text = "Health: " + mainPlayer.health;
+            mainPlayerXLabel.Text = "X: " + mainPlayer.data[2];
+            mainPlayerYLabel.Text = "Y: " + mainPlayer.data[3];
+            mainPlayerZLabel.Text = "Z: " + mainPlayer.data[4];
 
-            // Display Enemy information
-            Enemy.loadData(Mem);
-            EnemyHLabel.Text = "Health: " + Enemy.health;
-            EnemyXLabel.Text = "X: " + Enemy.data[2];
-            EnemyYLabel.Text = "Y: " + Enemy.data[3];
-            EnemyZLabel.Text = "Z: " + Enemy.data[4];
+            // Display enemy information
+            enemy.loadData(mem);
+            enemyHLabel.Text = "Health: " + enemy.health;
+            enemyXLabel.Text = "X: " + enemy.data[2];
+            enemyYLabel.Text = "Y: " + enemy.data[3];
+            enemyZLabel.Text = "Z: " + enemy.data[4];
 
             // Check for each checkbox and mod accordingly
 
@@ -39,19 +43,19 @@ namespace Aimbot
             if(aimbotCheckbox.Checked)
             {
                 // Check to make sure both are alive
-                if (Enemy.health > 0 && MainPlayer.health > 0)
+                if (enemy.health > 0 && mainPlayer.health > 0)
                 {
-                    float xdif = Enemy.data[2] - MainPlayer.data[2],
-                            ydif = Enemy.data[3] - MainPlayer.data[3],
-                            zdif = Enemy.data[4] - MainPlayer.data[4];
+                    float xdif = enemy.data[2] - mainPlayer.data[2],
+                            ydif = enemy.data[3] - mainPlayer.data[3],
+                            zdif = enemy.data[4] - mainPlayer.data[4];
 
                     // Calculate the angle needed to change, convert to degrees
-                    float yaw =    (float)(Math.Atan2(Enemy.data[3] - MainPlayer.data[3], Enemy.distanceTo(MainPlayer)) * 180 / Math.PI);
-                    float pitch = -(float)(Math.Atan2(Enemy.data[2]- MainPlayer.data[2], Enemy.data[4] - MainPlayer.data[4]) * 180 / Math.PI + 180);
+                    float yaw =    (float)(Math.Atan2(enemy.data[3] - mainPlayer.data[3], enemy.distanceTo(mainPlayer)) * 180 / Math.PI);
+                    float pitch = -(float)(Math.Atan2(enemy.data[2]- mainPlayer.data[2], enemy.data[4] - mainPlayer.data[4]) * 180 / Math.PI + 180);
 
                     // Store the calculated values into memory
-                    Mem.WriteFloat(MainPlayer.pointerAddress + MainPlayer.offsets[1], pitch);
-                    Mem.WriteFloat(MainPlayer.pointerAddress + MainPlayer.offsets[2], yaw);
+                    mem.WriteFloat(mainPlayer.pointerAddress + mainPlayer.offsets[1], pitch);
+                    mem.WriteFloat(mainPlayer.pointerAddress + mainPlayer.offsets[2], yaw);
                 }
             }
 
@@ -59,31 +63,38 @@ namespace Aimbot
             if(healthCheckbox.Checked)
             {
                 // Make sure that the player is alive when we start
-                if(MainPlayer.data[0] > 0)
+                if(mainPlayer.data[0] > 0)
                 {
-                    Mem.WriteInt(MainPlayer.pointerAddress + MainPlayer.offsets[0], 1000);
+                    mem.WriteInt(mainPlayer.pointerAddress + mainPlayer.offsets[0], 1000);
                 }
             }
         }
         private void processChoiceCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try {
-                // Attach to process
-                ProcessList[0] = Process.GetProcessById(ProcessList[processChoiceCombo.SelectedIndex].Id);
-                Mem = new MemoryManager(ProcessList[0].Id);
+            try
+            {
+                // Find the id of the selected process
+                int pID;
+                int.TryParse(Regex.Match(processChoiceCombo.Text, @"\d+$").Value, out pID);
+
+                // Set the selected process to the one of the id found
+                selectedProcess = Process.GetProcessById(pID);
+
+                // Create a new MemoryManager for the process
+                mem = new MemoryManager(selectedProcess.Id);
+
+                // Start the process timer
                 processTimer.Start();
 
-                // Set the method to run when the process is quit
-                //ProcessList[0].Exited += process_Exited;
-
                 // Initialize enemy info
-                Enemy = new PlayerInfo(ProcessList[0].MainModule.BaseAddress.ToInt32() + 0x10F4F8, new int[] { 0x4 }, new int[] { 0xF8, 0x40, 0x44, 0x34, 0x3c, 0x38 });
+                enemy = new PlayerInfo(selectedProcess.MainModule.BaseAddress.ToInt32() + 0x10F4F8, new int[] { 0x4 }, new int[] { 0xF8, 0x40, 0x44, 0x34, 0x3c, 0x38 });
 
                 // Find the pointers from their bases/offsets in the program
-                MainPlayer.findPointer(Mem);
-                Enemy.findPointer(Mem);
+                mainPlayer.findPointer(mem);
+                enemy.findPointer(mem);
             }
-            catch(Exception ex) {
+            catch(Exception ex)
+            {
                 MessageBox.Show("Error attaching to process: " + ex.GetBaseException());
             }
         }
@@ -91,17 +102,11 @@ namespace Aimbot
         private void processChoiceCombo_Click(object sender, EventArgs e)
         {
             processChoiceCombo.Items.Clear();
-            ProcessList = Process.GetProcesses();
 
-            for(int i = 0; i < ProcessList.Length; i++)
+            foreach(Process process in Process.GetProcesses())
             {
-                processChoiceCombo.Items.Add(ProcessList[i].ProcessName + " - " + ProcessList[i].Id);
+                processChoiceCombo.Items.Add(process.ProcessName + " - " + process.Id);
             }
-        }
-
-        private void process_Exited(object sender, EventArgs e)
-        {
-            MessageBox.Show("Process has closed. Please restart game in order to use functionally");
         }
     }
 }

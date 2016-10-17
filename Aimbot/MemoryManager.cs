@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MemoryManagerLib
 {
@@ -33,6 +31,7 @@ namespace MemoryManagerLib
             processHandle = OpenProcess(ProcessAccessFlags.All, false, process.Id);
         }
 
+        // Core windows level functions
         [DllImport("kernel32.dll")]
         private static extern IntPtr OpenProcess(ProcessAccessFlags dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, int dwProcessId);
 
@@ -42,6 +41,7 @@ namespace MemoryManagerLib
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer, int dwSize, out int lpNumberOfBytesRead);
 
+        // Simple functions, one level above windows functions
         public byte[] ReadMemory(int address, int processSize, out int bytesRead)
         {
             byte[] buffer = new byte[processSize];
@@ -94,18 +94,6 @@ namespace MemoryManagerLib
             WriteMemory(MemoryAddress, BitConverter.GetBytes(value), out bytesWritten);
 
             return bytesWritten != 0;
-        }
-
-        // End methods
-
-        public int GetObjectSize(object TestObject)
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            MemoryStream ms = new MemoryStream();
-            byte[] Array;
-            bf.Serialize(ms, TestObject);
-            Array = ms.ToArray();
-            return Array.Length;
         }
     }
 }

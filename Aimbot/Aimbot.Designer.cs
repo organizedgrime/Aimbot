@@ -37,16 +37,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.processTimer = new System.Windows.Forms.Timer(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.MainPlayerLabel = new System.Windows.Forms.Label();
-            this.MainPlayerXLabel = new System.Windows.Forms.Label();
-            this.MainPlayerZLabel = new System.Windows.Forms.Label();
-            this.MainPlayerYLabel = new System.Windows.Forms.Label();
-            this.EnemyYLabel = new System.Windows.Forms.Label();
-            this.EnemyZLabel = new System.Windows.Forms.Label();
-            this.EnemyXLabel = new System.Windows.Forms.Label();
-            this.EnemyLabel = new System.Windows.Forms.Label();
-            this.EnemyHLabel = new System.Windows.Forms.Label();
-            this.MainPlayerHLabel = new System.Windows.Forms.Label();
+            this.mainPlayerLabel = new System.Windows.Forms.Label();
+            this.mainPlayerXLabel = new System.Windows.Forms.Label();
+            this.mainPlayerZLabel = new System.Windows.Forms.Label();
+            this.mainPlayerYLabel = new System.Windows.Forms.Label();
+            this.enemyYLabel = new System.Windows.Forms.Label();
+            this.enemyZLabel = new System.Windows.Forms.Label();
+            this.enemyXLabel = new System.Windows.Forms.Label();
+            this.enemyLabel = new System.Windows.Forms.Label();
+            this.enemyHLabel = new System.Windows.Forms.Label();
+            this.mainPlayerHLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -124,111 +124,111 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.Visible = false;
             // 
-            // MainPlayerLabel
+            // mainPlayerLabel
             // 
-            this.MainPlayerLabel.AutoSize = true;
-            this.MainPlayerLabel.Location = new System.Drawing.Point(150, 9);
-            this.MainPlayerLabel.Name = "MainPlayerLabel";
-            this.MainPlayerLabel.Size = new System.Drawing.Size(112, 13);
-            this.MainPlayerLabel.TabIndex = 7;
-            this.MainPlayerLabel.Text = "MainPlayer Properties:";
+            this.mainPlayerLabel.AutoSize = true;
+            this.mainPlayerLabel.Location = new System.Drawing.Point(150, 9);
+            this.mainPlayerLabel.Name = "mainPlayerLabel";
+            this.mainPlayerLabel.Size = new System.Drawing.Size(112, 13);
+            this.mainPlayerLabel.TabIndex = 7;
+            this.mainPlayerLabel.Text = "mainPlayer Properties:";
             // 
-            // MainPlayerXLabel
+            // mainPlayerXLabel
             // 
-            this.MainPlayerXLabel.AutoSize = true;
-            this.MainPlayerXLabel.Location = new System.Drawing.Point(150, 49);
-            this.MainPlayerXLabel.Name = "MainPlayerXLabel";
-            this.MainPlayerXLabel.Size = new System.Drawing.Size(20, 13);
-            this.MainPlayerXLabel.TabIndex = 8;
-            this.MainPlayerXLabel.Text = "X: ";
+            this.mainPlayerXLabel.AutoSize = true;
+            this.mainPlayerXLabel.Location = new System.Drawing.Point(150, 49);
+            this.mainPlayerXLabel.Name = "mainPlayerXLabel";
+            this.mainPlayerXLabel.Size = new System.Drawing.Size(20, 13);
+            this.mainPlayerXLabel.TabIndex = 8;
+            this.mainPlayerXLabel.Text = "X: ";
             // 
-            // MainPlayerZLabel
+            // mainPlayerZLabel
             // 
-            this.MainPlayerZLabel.AutoSize = true;
-            this.MainPlayerZLabel.Location = new System.Drawing.Point(150, 93);
-            this.MainPlayerZLabel.Name = "MainPlayerZLabel";
-            this.MainPlayerZLabel.Size = new System.Drawing.Size(20, 13);
-            this.MainPlayerZLabel.TabIndex = 9;
-            this.MainPlayerZLabel.Text = "Z: ";
+            this.mainPlayerZLabel.AutoSize = true;
+            this.mainPlayerZLabel.Location = new System.Drawing.Point(150, 93);
+            this.mainPlayerZLabel.Name = "mainPlayerZLabel";
+            this.mainPlayerZLabel.Size = new System.Drawing.Size(20, 13);
+            this.mainPlayerZLabel.TabIndex = 9;
+            this.mainPlayerZLabel.Text = "Z: ";
             // 
-            // MainPlayerYLabel
+            // mainPlayerYLabel
             // 
-            this.MainPlayerYLabel.AutoSize = true;
-            this.MainPlayerYLabel.Location = new System.Drawing.Point(150, 72);
-            this.MainPlayerYLabel.Name = "MainPlayerYLabel";
-            this.MainPlayerYLabel.Size = new System.Drawing.Size(20, 13);
-            this.MainPlayerYLabel.TabIndex = 10;
-            this.MainPlayerYLabel.Text = "Y: ";
+            this.mainPlayerYLabel.AutoSize = true;
+            this.mainPlayerYLabel.Location = new System.Drawing.Point(150, 72);
+            this.mainPlayerYLabel.Name = "mainPlayerYLabel";
+            this.mainPlayerYLabel.Size = new System.Drawing.Size(20, 13);
+            this.mainPlayerYLabel.TabIndex = 10;
+            this.mainPlayerYLabel.Text = "Y: ";
             // 
-            // EnemyYLabel
+            // enemyYLabel
             // 
-            this.EnemyYLabel.AutoSize = true;
-            this.EnemyYLabel.Location = new System.Drawing.Point(268, 72);
-            this.EnemyYLabel.Name = "EnemyYLabel";
-            this.EnemyYLabel.Size = new System.Drawing.Size(20, 13);
-            this.EnemyYLabel.TabIndex = 14;
-            this.EnemyYLabel.Text = "Y: ";
+            this.enemyYLabel.AutoSize = true;
+            this.enemyYLabel.Location = new System.Drawing.Point(268, 72);
+            this.enemyYLabel.Name = "enemyYLabel";
+            this.enemyYLabel.Size = new System.Drawing.Size(20, 13);
+            this.enemyYLabel.TabIndex = 14;
+            this.enemyYLabel.Text = "Y: ";
             // 
-            // EnemyZLabel
+            // enemyZLabel
             // 
-            this.EnemyZLabel.AutoSize = true;
-            this.EnemyZLabel.Location = new System.Drawing.Point(268, 93);
-            this.EnemyZLabel.Name = "EnemyZLabel";
-            this.EnemyZLabel.Size = new System.Drawing.Size(20, 13);
-            this.EnemyZLabel.TabIndex = 13;
-            this.EnemyZLabel.Text = "Z: ";
+            this.enemyZLabel.AutoSize = true;
+            this.enemyZLabel.Location = new System.Drawing.Point(268, 93);
+            this.enemyZLabel.Name = "enemyZLabel";
+            this.enemyZLabel.Size = new System.Drawing.Size(20, 13);
+            this.enemyZLabel.TabIndex = 13;
+            this.enemyZLabel.Text = "Z: ";
             // 
-            // EnemyXLabel
+            // enemyXLabel
             // 
-            this.EnemyXLabel.AutoSize = true;
-            this.EnemyXLabel.Location = new System.Drawing.Point(268, 49);
-            this.EnemyXLabel.Name = "EnemyXLabel";
-            this.EnemyXLabel.Size = new System.Drawing.Size(20, 13);
-            this.EnemyXLabel.TabIndex = 12;
-            this.EnemyXLabel.Text = "X: ";
+            this.enemyXLabel.AutoSize = true;
+            this.enemyXLabel.Location = new System.Drawing.Point(268, 49);
+            this.enemyXLabel.Name = "enemyXLabel";
+            this.enemyXLabel.Size = new System.Drawing.Size(20, 13);
+            this.enemyXLabel.TabIndex = 12;
+            this.enemyXLabel.Text = "X: ";
             // 
-            // EnemyLabel
+            // enemyLabel
             // 
-            this.EnemyLabel.AutoSize = true;
-            this.EnemyLabel.Location = new System.Drawing.Point(268, 9);
-            this.EnemyLabel.Name = "EnemyLabel";
-            this.EnemyLabel.Size = new System.Drawing.Size(92, 13);
-            this.EnemyLabel.TabIndex = 11;
-            this.EnemyLabel.Text = "Enemy Properties:";
+            this.enemyLabel.AutoSize = true;
+            this.enemyLabel.Location = new System.Drawing.Point(268, 9);
+            this.enemyLabel.Name = "enemyLabel";
+            this.enemyLabel.Size = new System.Drawing.Size(92, 13);
+            this.enemyLabel.TabIndex = 11;
+            this.enemyLabel.Text = "enemy Properties:";
             // 
-            // EnemyHLabel
+            // enemyHLabel
             // 
-            this.EnemyHLabel.AutoSize = true;
-            this.EnemyHLabel.Location = new System.Drawing.Point(268, 28);
-            this.EnemyHLabel.Name = "EnemyHLabel";
-            this.EnemyHLabel.Size = new System.Drawing.Size(44, 13);
-            this.EnemyHLabel.TabIndex = 15;
-            this.EnemyHLabel.Text = "Health: ";
+            this.enemyHLabel.AutoSize = true;
+            this.enemyHLabel.Location = new System.Drawing.Point(268, 28);
+            this.enemyHLabel.Name = "enemyHLabel";
+            this.enemyHLabel.Size = new System.Drawing.Size(44, 13);
+            this.enemyHLabel.TabIndex = 15;
+            this.enemyHLabel.Text = "Health: ";
             // 
-            // MainPlayerHLabel
+            // mainPlayerHLabel
             // 
-            this.MainPlayerHLabel.AutoSize = true;
-            this.MainPlayerHLabel.Location = new System.Drawing.Point(150, 28);
-            this.MainPlayerHLabel.Name = "MainPlayerHLabel";
-            this.MainPlayerHLabel.Size = new System.Drawing.Size(44, 13);
-            this.MainPlayerHLabel.TabIndex = 16;
-            this.MainPlayerHLabel.Text = "Health: ";
+            this.mainPlayerHLabel.AutoSize = true;
+            this.mainPlayerHLabel.Location = new System.Drawing.Point(150, 28);
+            this.mainPlayerHLabel.Name = "mainPlayerHLabel";
+            this.mainPlayerHLabel.Size = new System.Drawing.Size(44, 13);
+            this.mainPlayerHLabel.TabIndex = 16;
+            this.mainPlayerHLabel.Text = "Health: ";
             // 
             // Aimbot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 158);
-            this.Controls.Add(this.MainPlayerHLabel);
-            this.Controls.Add(this.EnemyHLabel);
-            this.Controls.Add(this.EnemyYLabel);
-            this.Controls.Add(this.EnemyZLabel);
-            this.Controls.Add(this.EnemyXLabel);
-            this.Controls.Add(this.EnemyLabel);
-            this.Controls.Add(this.MainPlayerYLabel);
-            this.Controls.Add(this.MainPlayerZLabel);
-            this.Controls.Add(this.MainPlayerXLabel);
-            this.Controls.Add(this.MainPlayerLabel);
+            this.Controls.Add(this.mainPlayerHLabel);
+            this.Controls.Add(this.enemyHLabel);
+            this.Controls.Add(this.enemyYLabel);
+            this.Controls.Add(this.enemyZLabel);
+            this.Controls.Add(this.enemyXLabel);
+            this.Controls.Add(this.enemyLabel);
+            this.Controls.Add(this.mainPlayerYLabel);
+            this.Controls.Add(this.mainPlayerZLabel);
+            this.Controls.Add(this.mainPlayerXLabel);
+            this.Controls.Add(this.mainPlayerLabel);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.processChoiceCombo);
@@ -253,16 +253,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer processTimer;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label MainPlayerLabel;
-        private System.Windows.Forms.Label MainPlayerXLabel;
-        private System.Windows.Forms.Label MainPlayerZLabel;
-        private System.Windows.Forms.Label MainPlayerYLabel;
-        private System.Windows.Forms.Label EnemyYLabel;
-        private System.Windows.Forms.Label EnemyZLabel;
-        private System.Windows.Forms.Label EnemyXLabel;
-        private System.Windows.Forms.Label EnemyLabel;
-        private System.Windows.Forms.Label EnemyHLabel;
-        private System.Windows.Forms.Label MainPlayerHLabel;
+        private System.Windows.Forms.Label mainPlayerLabel;
+        private System.Windows.Forms.Label mainPlayerXLabel;
+        private System.Windows.Forms.Label mainPlayerZLabel;
+        private System.Windows.Forms.Label mainPlayerYLabel;
+        private System.Windows.Forms.Label enemyYLabel;
+        private System.Windows.Forms.Label enemyZLabel;
+        private System.Windows.Forms.Label enemyXLabel;
+        private System.Windows.Forms.Label enemyLabel;
+        private System.Windows.Forms.Label enemyHLabel;
+        private System.Windows.Forms.Label mainPlayerHLabel;
     }
 }
 
