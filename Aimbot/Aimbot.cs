@@ -25,17 +25,17 @@ namespace Aimbot
         {
             // Display mainPlayer information
             mainPlayer.loadData(mem);
-            mainPlayerHLabel.Text = "Health: " + mainPlayer.health;
-            mainPlayerXLabel.Text = "X: " + mainPlayer.data[2];
-            mainPlayerYLabel.Text = "Y: " + mainPlayer.data[3];
-            mainPlayerZLabel.Text = "Z: " + mainPlayer.data[4];
+            mainPlayerHLabel.Text = "Health: " + mainPlayer.data[0];
+            mainPlayerXLabel.Text = "X: " + mainPlayer.data[3];
+            mainPlayerYLabel.Text = "Y: " + mainPlayer.data[4];
+            mainPlayerZLabel.Text = "Z: " + mainPlayer.data[5];
 
             // Display enemy information
             enemy.loadData(mem);
-            enemyHLabel.Text = "Health: " + enemy.health;
-            enemyXLabel.Text = "X: " + enemy.data[2];
-            enemyYLabel.Text = "Y: " + enemy.data[3];
-            enemyZLabel.Text = "Z: " + enemy.data[4];
+            enemyHLabel.Text = "Health: " + enemy.data[0];
+            enemyXLabel.Text = "X: " + enemy.data[3];
+            enemyYLabel.Text = "Y: " + enemy.data[4];
+            enemyZLabel.Text = "Z: " + enemy.data[5];
 
             // Check for each checkbox and mod accordingly
 
@@ -43,15 +43,15 @@ namespace Aimbot
             if(aimbotCheckbox.Checked)
             {
                 // Check to make sure both are alive
-                if (enemy.health > 0 && mainPlayer.health > 0)
+                if (enemy.data[0] > 0 && mainPlayer.data[0] > 0)
                 {
-                    float xdif = enemy.data[2] - mainPlayer.data[2],
-                            ydif = enemy.data[3] - mainPlayer.data[3],
-                            zdif = enemy.data[4] - mainPlayer.data[4];
+                    float xdif = enemy.data[3] - mainPlayer.data[3],
+                            ydif = enemy.data[4] - mainPlayer.data[4],
+                            zdif = enemy.data[5] - mainPlayer.data[5];
 
                     // Calculate the angle needed to change, convert to degrees
-                    float yaw =    (float)(Math.Atan2(enemy.data[3] - mainPlayer.data[3], enemy.distanceTo(mainPlayer)) * 180 / Math.PI);
-                    float pitch = -(float)(Math.Atan2(enemy.data[2]- mainPlayer.data[2], enemy.data[4] - mainPlayer.data[4]) * 180 / Math.PI + 180);
+                    float yaw =    (float)(Math.Atan2(enemy.data[4] - mainPlayer.data[4], enemy.distanceTo(mainPlayer)) * 180 / Math.PI);
+                    float pitch = -(float)(Math.Atan2(enemy.data[3]- mainPlayer.data[3], enemy.data[5] - mainPlayer.data[5]) * 180 / Math.PI + 180);
 
                     // Store the calculated values into memory
                     mem.WriteFloat(mainPlayer.pointerAddress + mainPlayer.offsets[1], pitch);

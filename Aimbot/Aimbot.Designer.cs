@@ -131,7 +131,7 @@
             this.mainPlayerLabel.Name = "mainPlayerLabel";
             this.mainPlayerLabel.Size = new System.Drawing.Size(112, 13);
             this.mainPlayerLabel.TabIndex = 7;
-            this.mainPlayerLabel.Text = "mainPlayer Properties:";
+            this.mainPlayerLabel.Text = "MainPlayer Properties:";
             // 
             // mainPlayerXLabel
             // 
@@ -194,7 +194,7 @@
             this.enemyLabel.Name = "enemyLabel";
             this.enemyLabel.Size = new System.Drawing.Size(92, 13);
             this.enemyLabel.TabIndex = 11;
-            this.enemyLabel.Text = "enemy Properties:";
+            this.enemyLabel.Text = "Enemy Properties:";
             // 
             // enemyHLabel
             // 
@@ -218,7 +218,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 158);
+            this.ClientSize = new System.Drawing.Size(365, 114);
             this.Controls.Add(this.mainPlayerHLabel);
             this.Controls.Add(this.enemyHLabel);
             this.Controls.Add(this.enemyYLabel);

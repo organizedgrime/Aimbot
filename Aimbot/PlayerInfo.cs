@@ -18,27 +18,25 @@ namespace Aimbot
         // Health, xMouse, yMouse, xPos, yPos, zPos
         public int[] offsets;
 
-        // Int for health, because reading in data from a byte array as a float doesn't work here
-        public int health;
-
         // Float array for in-game Data
-        // xMouse, yMouse, xPos, yPos, zPos
-        public float[] data = new float[5];
+        // Health, xMouse, yMouse, xPos, yPos, zPos
+        public float[] data;
 
         public PlayerInfo(int baseAddress, int[] baseOffsets, int[] offsets)
         {
             this.baseAddress = baseAddress;
             this.baseOffsets = baseOffsets;
             this.offsets = offsets;
+            data = new float[offsets.Length];
         }
         
         // This function reads data from the game
         public void loadData(MemoryManager Mem)
         {
-            health = Mem.ReadInt(pointerAddress + offsets[0]);
-            for(int i = 0; i < data.Length; i++)
+            data[0] = Mem.ReadInt(pointerAddress + offsets[0]);
+            for(int i = 1; i < data.Length; i++)
             {
-                data[i] = Mem.ReadFloat(pointerAddress + offsets[i+1]);
+                data[i] = Mem.ReadFloat(pointerAddress + offsets[i]);
             }
         }
 
@@ -57,9 +55,9 @@ namespace Aimbot
         public float distanceTo(PlayerInfo player2)
         {
             return (float)(Math.Sqrt(
-                ((player2.data[2] - data[2]) * (player2.data[2] - data[2])) +
                 ((player2.data[3] - data[3]) * (player2.data[3] - data[3])) +
-                ((player2.data[4] - data[4]) * (player2.data[4] - data[4]))
+                ((player2.data[4] - data[4]) * (player2.data[4] - data[4])) +
+                ((player2.data[5] - data[5]) * (player2.data[5] - data[5]))
             ));
         }
     }
